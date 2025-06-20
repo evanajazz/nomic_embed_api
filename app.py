@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from nomic import embed
+from nomic.embed import embed
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
@@ -16,7 +16,7 @@ class Item(BaseModel):
 
 # Ruta para generar embeddings
 @app.post("/embed")
-async def get_embed(item: Item):
-    vectors = [v async for v in embed(item.text)]
+def get_embed(item: Item):
+    vectors = embed(item.text)
     return {"vectors": vectors}
 
