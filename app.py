@@ -17,6 +17,6 @@ class Item(BaseModel):
 # Ruta para generar embeddings
 @app.post("/embed")
 async def get_embed(item: Item):
-    vectors = embed(item.text)
+    vectors = [v async for v in embed(item.text)]
     return {"vectors": vectors}
 
