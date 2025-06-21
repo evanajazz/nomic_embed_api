@@ -1,5 +1,4 @@
 fastapi==0.110.*
 uvicorn[standard]==0.29.*
+nomic  # trae la versión más reciente compatible
 python-dotenv==1.*
-git+https://github.com/nomic-ai/nomic-embed-text.git
-
