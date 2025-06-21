@@ -14,14 +14,14 @@ class Item(BaseModel):
 
 @app.post("/embed")
 async def get_embed(item: Item):
-    # Usa embed.text para modelos nomic-embed-text-v1.5
     vectors = embed.text(
         texts=item.text,
         model="nomic-embed-text-v1.5",
         task_type="search_document",
-        dimensionality=512  # o 256 u 768 según lo que necesites
+        dimensionality=256
     )
-    return JSONResponse(content={"vectors": vectors})
+    return {"vectors": vectors}
+
 
 
 
