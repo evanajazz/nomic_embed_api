@@ -1,26 +1,27 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import os
+import nomic
 from nomic import embed
-from fastapi.responses import JSONResponse
+
+# Login explícito
+nomic.login(api_key=os.environ["NOMIC_API_KEY"])
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return JSONResponse(content={"message": "API de embeddings con Nomic funcionando correctamente"})
-
-class Item(BaseModel):
-    text: list[str]
+class EmbedText(BaseModel):
+    text: list
 
 @app.post("/embed")
-async def get_embed(item: Item):
+async def get_embed(item: EmbedText):
     vectors = embed.text(
         texts=item.text,
-        model="nomic-embed-text-v1.5",
-        task_type="search_document",
+        model='nomic-embed-text-v1',
+        task_type='embedding',
         dimensionality=256
     )
-    return {"vectors": vectors}
+    return {"embeddings": vectors}
+
 
 
 
