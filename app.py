@@ -1,26 +1,29 @@
+import os
 from fastapi import FastAPI
 from pydantic import BaseModel
-import os
+from typing import List
 import nomic
-from nomic import embed
 
-# Login explícito
-nomic.login(api_key=os.environ["NOMIC_API_KEY"])
+# Corrección: usar login sin keyword
+nomic.login(os.environ["NOMIC_API_KEY"])
+
+from nomic import embed
 
 app = FastAPI()
 
-class EmbedText(BaseModel):
-    text: list
+class Item(BaseModel):
+    text: List[str]
 
 @app.post("/embed")
-async def get_embed(item: EmbedText):
+async def get_embed(item: Item):
     vectors = embed.text(
         texts=item.text,
         model='nomic-embed-text-v1',
         task_type='embedding',
         dimensionality=256
     )
-    return {"embeddings": vectors}
+    return {"vectors": vectors}
+
 
 
 
