@@ -7,4 +7,4 @@ services:
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: NOMIC_API_KEY
-        value: tu_clave_aqui
+        value: nk-Th2Vv8MZGhMyJQYeAQq5-W6O1znGFWaHJ1zZUgMuKbg
