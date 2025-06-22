@@ -1,4 +1,4 @@
 fastapi==0.110.*
 uvicorn[standard]==0.29.*
-nomic  # trae la versión más reciente compatible
+nomic==0.1.*
 python-dotenv==1.*
