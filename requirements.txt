@@ -1,4 +1,4 @@
 fastapi==0.110.*
 uvicorn[standard]==0.29.*
-nomic==0.1.*
+nomic==3.5.*
 python-dotenv==1.*
