@@ -2,9 +2,9 @@ services:
   - type: web
     name: nomic-embed-service
     env: python
-    plan: free
-    buildCommand: pip install -r requirements.txt
+    plan: free # El plan gratuito puede ser lento, considera uno de pago si necesitas más rendimiento.
+    buildCommanpip install -r requirements.txt
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: NOMIC_API_KEY
-        value: nk-Th2Vv8MZGhMyJQYeAQq5-W6O1znGFWaHJ1zZUgMuKbg
+      - key: PYTHON_VERSION
+        value: "3.10.13" # Asegura que Render use la versión correcta
