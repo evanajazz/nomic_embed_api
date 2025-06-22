@@ -4,7 +4,7 @@ from typing import List
 import os
 import nomic
 
-nomic.login(os.environ["NOMIC_API_KEY"])
+nomic.login(os.environ["NOMIC_API_KEY"])  # ✅ Login correcto
 
 from nomic import embed
 
@@ -17,11 +17,12 @@ class Item(BaseModel):
 async def get_embed(item: Item):
     vectors = embed.text(
         texts=item.text,
-        model="nomic-embed-text-v1",
-        task_type="retrieval",  # ✅ Cambiado de "embedding"
-        dimensionality=256
+        model="nomic-embed-text-v1",  # ✅ Modelo correcto
+        task_type="retrieval",        # ✅ "retrieval" es el único válido actualmente
+        dimensionality=256            # ✅ Dimensionalidad aceptada
     )
     return {"vectors": vectors}
+
 
 
 
