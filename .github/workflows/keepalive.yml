@@ -9,5 +9,6 @@ jobs:
   keepalive:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Nomic API
-        run: curl -s --max-time 10 https://nomic-embed-api.onrender.com/embed
+      - name: Ping Nomic API (retry & longer timeout)
+        run: curl -s --max-time 30 --retry 3 https://nomic-embed-api.onrender.com/embed
+
