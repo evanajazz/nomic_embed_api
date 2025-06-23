@@ -1,0 +1,13 @@
+name: Keep Nomic Alive
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Nomic API
+        run: curl -s --max-time 10 https://nomic-embed-api.onrender.com/embed
